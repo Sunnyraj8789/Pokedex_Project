@@ -33,10 +33,8 @@ function PokemonList(){
 
    const pokeListResult=  pokemonData.map((pokeData)=>{
     const pokemon = pokeData.data;
-
-
-
      return {
+        id: pokemon.id,
         name:pokemon.name,
         image:(pokemon.sprites.other)? pokemon.sprites.other.dream_world.front_default:pokemon.sprites.front_shiny,
         types:pokemon.types
@@ -54,11 +52,13 @@ function PokemonList(){
     useEffect(()=>{
         downloadPokemons(); 
     },[pokedexUrl]);
+
+
     return (
         <div className="pokemon-list-wrapper">
             <div className="pokemon-wrapper">
             {(isLoading)? 'Loading.....':
-                 pokemonList.map((p) => <Pokemon name={p.name} image={p.image} key={p.id}/>)
+                 pokemonList.map((p) => <Pokemon name={p.name} image={p.image} key={p.id} id={p.id}/>)
             }
             </div>
             <div className="controls">
